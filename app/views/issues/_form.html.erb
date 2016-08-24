@@ -1,0 +1,37 @@
+<%= form_for([@project, @issue]) do |f| %>
+  <% if @issue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+
+      <ul>
+      <% @issue.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h2>Project: <%= @project.name %></h2>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+ <div class="field">
+    Assign To:<br>
+    <%= f.collection_select(:user_id, User.all, :id, :email) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :due_at %><br>
+    <%= f.datetime_select :due_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

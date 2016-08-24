@@ -1,0 +1,9 @@
+== README
+
+This is my first Ruby on Rails test project. This application tracks jobs and issues.
+
+* Ruby version - 2.3.1
+
+* Rails version - 4.2.6
+
+* System dependencies - Devise, Bootstrap

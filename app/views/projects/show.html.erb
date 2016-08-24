@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<div class="panel panel-default">
+<div class="panel-heading">Issues</div>
+<div class="panel-body">
+
+<% if @issues.blank? %>
+   <p> The are no issues </p>
+<% else %>
+    <table class="table">
+    <tr>
+	    <td>Name</td>
+	    <td>Description</td>
+	    <td>Due</td>
+      <td>Assign To</td>
+	    <td></td>
+    </tr>
+    <% @issues.each do |issue| %>
+       <tr>
+	       <td><%= issue.name %></td>
+	       <td><%= issue.description %></td>
+	       <td><%= issue.due_at %></td>
+         <td><%= User.find(issue.user_id).email %></td>
+	       <td><%= link_to 'Edit', [:edit, @project, issue] , class: "btn btn-primary"%></td>
+       </tr>
+    <% end %>
+    </table>
+<% end %>   
+
+<%= link_to 'Add Issue', new_project_issue_path(@project) , class: "btn btn-primary"%> |
+<%= link_to 'Edit', edit_project_path(@project), class: "btn btn-primary" %> |
+<%= link_to 'Back', projects_path , class: "btn btn-link"%>
+
+</div>
+</div>
